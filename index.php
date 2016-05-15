@@ -10,6 +10,7 @@ DB::connect($database['server'], $database['user'], $database['password']);
 
 require_once(APP_ROOT.'/app/helpers/routes.php');
 require_once(APP_ROOT.'/app/helpers/view.php');
+require_once(APP_ROOT.'/app/helpers/reviews.php');
 
 if(DB::checkConnection()) {
     require_once(APP_ROOT.'/app/libs/Req.php');
@@ -21,4 +22,3 @@ if(DB::checkConnection()) {
     $template = 'db_error';
     require_once(APP_ROOT.'/app/views/layout.php');
 }
-

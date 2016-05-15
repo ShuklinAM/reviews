@@ -35,6 +35,7 @@ final class Db
         $query .= implode(' AND ', $where).' LIMIT 1';
 
         $result = mysqli_query(self::$_connection, $query);
+
         return mysqli_fetch_assoc($result);
     }
 
@@ -55,11 +56,33 @@ final class Db
 
         $result = mysqli_query(self::$_connection, $query);
 
-        $reviews = array();
-        while ($row = mysql_fetch_assoc($result)) {
-            $reviews[] = $row;
+        $rows = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
         }
 
-        return $reviews;
+        return $rows;
+    }
+
+    public static function getRowsCount($table)
+    {
+        $query = 'SELECT * FROM '.$table;
+        $result = mysqli_query(self::$_connection, $query);
+
+        return mysqli_num_rows($result);
+    }
+
+    public static function deleteRow($table, $conditions)
+    {
+        $query = 'DELETE FROM '.$table.' WHERE ';
+
+        $where = array();
+        foreach($conditions as $key => $value) {
+            $where[] = $key.' = "'.$value.'"';
+        }
+
+        $query .= implode(' AND ', $where);
+
+        mysqli_query(self::$_connection, $query);
     }
 }
