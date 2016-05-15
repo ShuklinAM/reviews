@@ -26,7 +26,7 @@ class IndexController
         );
 
         if(!$review['review'] || !$review['name'] || !$review['email']) {
-            App::addMessage(array('message' => 'Not all review fields were filled', 'type' => 'error'));
+            App::addMessage(array('message' => 'Not all review fields were filled', 'type' => 'danger'));
             return App::redirect();
         }
 
@@ -36,7 +36,7 @@ class IndexController
             if($imageName = Image::saveResizeImage()) {
                 $review['image'] = $imageName;
             } else {
-                App::addMessage(array('message' => 'File is not an image or it is too large', 'type' => 'error'));
+                App::addMessage(array('message' => 'File is not an image or it is too large', 'type' => 'danger'));
             }
         }
 

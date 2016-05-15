@@ -5,10 +5,13 @@
 
     <title>Reviews</title>
 
-    <!-- Bootstrap -->
     <link href="<?php echo App::getUrl('css/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo App::getUrl('css/bootstrap-theme.min.css');?>" rel="stylesheet">
     <link href="<?php echo App::getUrl('css/styles.css');?>" rel="stylesheet">
+
+    <script type="text/javascript" src="<?php echo App::getUrl('js/jquery-1.12.3.min.js');?>"></script>
+    <script type="text/javascript" src="<?php echo App::getUrl('js/jquery.form.min.js');?>"></script>
+    <script type="text/javascript" src="<?php echo App::getUrl('js/bootstrap.min.js');?>"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

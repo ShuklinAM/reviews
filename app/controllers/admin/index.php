@@ -39,7 +39,7 @@ class IndexController
         }
 
         if(!$review['review'] || !$review['name'] || !$review['email']) {
-            App::addMessage(array('message' => 'Not all review fields were filled', 'type' => 'error'));
+            App::addMessage(array('message' => 'Not all review fields were filled', 'type' => 'danger'));
             return App::redirect('admin/index/edit?id='.$review['review_id']);
         }
 

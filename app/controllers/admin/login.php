@@ -32,7 +32,7 @@ class LoginController
             }
         }
 
-        App::addMessage(array('message' => 'Login or password is not correct', 'type' => 'error'));
+        App::addMessage(array('message' => 'Login or password is not correct', 'type' => 'danger'));
         return App::redirect('admin/login');
     }
 
