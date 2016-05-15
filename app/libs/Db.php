@@ -22,4 +22,19 @@ final class Db
     {
         return self::$_connected;
     }
+
+    public static function getRowWhere($table, $fields)
+    {
+        $query = 'SELECT * FROM '.$table.' WHERE ';
+
+        $where = array();
+        foreach($fields as $key => $value) {
+            $where[] = $key.' = "'.$value.'"';
+        }
+
+        $query .= implode(' AND ', $where).' LIMIT 1';
+
+        $result = mysqli_query(self::$_connection, $query);
+        return mysqli_fetch_assoc($result);
+    }
 }

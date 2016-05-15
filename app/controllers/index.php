@@ -1,6 +1,6 @@
 <?php
 
-class Index
+class IndexController
 {
     public function indexAction()
     {
