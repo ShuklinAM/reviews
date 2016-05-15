@@ -64,9 +64,19 @@ class Db
         return $rows;
     }
 
-    public static function getRowsCount($table)
+    public static function getRowsCount($table, $conditions = null)
     {
         $query = 'SELECT * FROM '.$table;
+
+        if($conditions) {
+            $where = array();
+            foreach($conditions as $key => $value) {
+                $where[] = $key.' = "'.$value.'"';
+            }
+
+            $query .= ' WHERE '.implode(' AND ', $where);
+        }
+
         $result = mysqli_query(self::$_connection, $query);
 
         return mysqli_num_rows($result);
@@ -103,6 +113,19 @@ class Db
         }
 
         $query .= implode(' AND ', $where);
+
+        mysqli_query(self::$_connection, $query);
+    }
+
+    public static function addRow($table, $row)
+    {
+        $query = 'INSERT INTO '.$table;
+
+        $fields = array_keys($row);
+        $values = array_values($row);
+
+        $query .= ' ('.implode(', ', $fields).')';
+        $query .= ' VALUES ("'.implode('", "', $values).'")';
 
         mysqli_query(self::$_connection, $query);
     }

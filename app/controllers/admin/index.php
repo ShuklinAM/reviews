@@ -2,10 +2,14 @@
 
 class IndexController
 {
+    protected $_model;
+
     public function __construct()
     {
         Login::checkLogin();
         require_once(APP_ROOT.'/app/models/reviews.php');
+
+        $this->_model = new reviewsModel();
     }
 
     public function indexAction()
@@ -39,8 +43,7 @@ class IndexController
             return App::redirect('admin/index/edit?id='.$review['review_id']);
         }
 
-        $model = new reviewsModel();
-        $result = $model->updateReview($review);
+        $result = $this->_model->updateReview($review);
 
         if(!$result) {
             return App::redirect('admin');
@@ -54,14 +57,12 @@ class IndexController
     {
         $reviewId = Req::get('id');
         if($reviewId) {
-            $model = new reviewsModel();
-
-            $review = $model->getReview($reviewId);
+            $review = $this->_model->getReview($reviewId);
             if($review['image']) {
                 unlink(APP_ROOT.'/images/'.$review['image']);
             }
 
-            $model->deleteReview($reviewId);
+            $this->_model->deleteReview($reviewId);
 
             App::addMessage(array('message' => 'Review successfully deleted', 'type' => 'success'));
         }
@@ -71,8 +72,6 @@ class IndexController
 
     public function getReviews()
     {
-        $model = new reviewsModel();
-
         $page = Req::get('p') ? Req::get('p') - 1 : 0;
         $limit = Req::get('limit') ? Req::get('limit') : reviewsModel::LIMIT;
         $start = $page * $limit;
@@ -81,21 +80,19 @@ class IndexController
         $sortDir = Req::get('dir') ? Req::get('dir') : 'DESC';
         $sort = $sortField.' '.$sortDir;
 
-        return $model->getReviews($start, $limit, $sort);
+        return $this->_model->getReviews($start, $limit, $sort);
     }
 
     public function getReviewsCount()
     {
-        $model = new reviewsModel();
-        return $model->getReviewsCount();
+        return $this->_model->getReviewsCount();
     }
 
     public function getReview()
     {
         $reviewId = Req::get('id');
         if($reviewId) {
-            $model = new reviewsModel();
-            $review = $model->getReview($reviewId);
+            $review = $this->_model->getReview($reviewId);
 
             if($review) {
                 return $review;

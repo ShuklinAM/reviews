@@ -1,8 +1,9 @@
 <?php
 
-function showSortBy($title, $field) {
+function showSortBy($title, $field, $admin = false) {
     $currentOrder = (Req::get('sort')) ? Req::get('sort') : 'date';
     $currentDirection = (Req::get('dir')) ? Req::get('dir') : 'desc';
+    $page = (Req::get('p')) ? Req::get('p') : 1;
 
     $showArrow = ($currentOrder == $field) ? true : false;
     if($showArrow) {
@@ -14,8 +15,9 @@ function showSortBy($title, $field) {
         $showArrow = false;
     }
 
-    $params = 'sort='.$field.'&'.'dir='.$direction;
-    $sortUrl = App::getUrl('admin').'?'.$params;
+    $params = 'sort='.$field.'&'.'dir='.$direction.'&p='.$page;
+    $admin = ($admin) ? 'admin' : '';
+    $sortUrl = App::getUrl($admin).'?'.$params;
 
     return '<a href="'.$sortUrl.'">
                     '.$title.' '.$showArrow.'

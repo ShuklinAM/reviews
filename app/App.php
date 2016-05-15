@@ -60,11 +60,11 @@ final class App
         return BASE_URL.$path;
     }
 
-    public static function setPageParams($template, $controller = false, $model = false)
+    public static function setPageParams($template, $controller = false, $form = false)
     {
         $_SESSION['template'] = $template;
         $_SESSION['controller'] = $controller;
-        $_SESSION['model'] = $model;
+        $_SESSION['form'] = $form;
     }
 
     public static function getPageParams()
@@ -72,7 +72,7 @@ final class App
         $params = array(
             'template'      => $_SESSION['template'],
             'controller'    => $_SESSION['controller'],
-            'model'         => $_SESSION['model'],
+            'form'         => $_SESSION['form'],
         );
 
         return $params;
@@ -82,7 +82,7 @@ final class App
     {
         unset($_SESSION['template']);
         unset($_SESSION['controller']);
-        unset($_SESSION['model']);
+        unset($_SESSION['form']);
     }
 
     public static function setMessages($messages)

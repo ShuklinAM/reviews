@@ -17,7 +17,7 @@
         </div>
         <div class="form-group col-xs-6">
             <label for="review">Review</label>
-            <textarea name="review" required="" id="review" placeholder="Review"><?php echo $review['review'];?></textarea>
+            <textarea name="review" required="" id="review" placeholder="Review" class="form-control"><?php echo $review['review'];?></textarea>
         </div>
         <div class="form-group col-xs-3">
             <label for="admin_accepted">Published</label>

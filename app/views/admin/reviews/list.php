@@ -8,14 +8,14 @@
         <?php if($reviews):?>
             <thead>
             <tr>
-                <th><?php echo showSortBy('#', 'id');?></th>
-                <th><?php echo showSortBy('Review', 'review');?></th>
+                <th><?php echo showSortBy('#', 'id', true);?></th>
+                <th><?php echo showSortBy('Review', 'review', true);?></th>
                 <th>Image</th>
-                <th><?php echo showSortBy('Name', 'name');?></th>
-                <th><?php echo showSortBy('Email', 'email');?></th>
-                <th><?php echo showSortBy('Date', 'date');?></th>
-                <th><?php echo showSortBy('Change by admin', 'admin_updated');?></th>
-                <th><?php echo showSortBy('Published', 'admin_accepted');?></th>
+                <th><?php echo showSortBy('Name', 'name', true);?></th>
+                <th><?php echo showSortBy('Email', 'email', true);?></th>
+                <th><?php echo showSortBy('Date', 'date', true);?></th>
+                <th><?php echo showSortBy('Change by admin', 'admin_updated', true);?></th>
+                <th><?php echo showSortBy('Published', 'admin_accepted', true);?></th>
                 <th>Options</th>
             </tr>
             </thead>

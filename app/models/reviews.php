@@ -4,7 +4,7 @@ class reviewsModel
 {
     protected $_table = 'reviews';
 
-    const LIMIT = 10;
+    const LIMIT = 2;
 
     public function getReview($reviewId)
     {
@@ -25,6 +25,12 @@ class reviewsModel
     public function getReviewsCount()
     {
         return Db::getRowsCount($this->_table);
+    }
+
+    public function getActiveReviewsCount()
+    {
+        $condition = array('admin_accepted' => 1);
+        return Db::getRowsCount($this->_table, $condition);
     }
 
     public function deleteReview($id)
@@ -51,5 +57,11 @@ class reviewsModel
         Db::updateRow($this->_table, array('review_id' => $prevReview['review_id']), $review);
 
         return true;
+    }
+
+    public function addReview($review)
+    {
+        $review['date'] = date('Y-m-d H:i:s');
+        Db::addRow($this->_table, $review);
     }
 }
