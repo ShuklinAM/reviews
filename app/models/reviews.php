@@ -4,7 +4,7 @@ class reviewsModel
 {
     protected $_table = 'reviews';
 
-    const LIMIT = 2;
+    const LIMIT = 10;
 
     public function getReview($reviewId)
     {

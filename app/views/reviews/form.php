@@ -1,5 +1,5 @@
 <div class="col-xs-4">
-    <form role="form" action="<?php echo App::getUrl('index/add');?>" method="post">
+    <form role="form" action="<?php echo App::getUrl('index/add');?>" method="post" enctype="multipart/form-data">
         <h4 class="form-signin-heading">Add review</h4>
         <div class="form-group col-xs-12">
             <label for="image">Image</label>

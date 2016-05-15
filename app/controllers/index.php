@@ -30,6 +30,16 @@ class IndexController
             return App::redirect();
         }
 
+        if(isset($_FILES['image']['name'])) {
+            require_once(APP_ROOT.'/app/libs/Image.php');
+
+            if($imageName = Image::saveResizeImage()) {
+                $review['image'] = $imageName;
+            } else {
+                App::addMessage(array('message' => 'File is not an image or it is too large', 'type' => 'error'));
+            }
+        }
+
         $this->_model->addReview($review);
 
         App::addMessage(array('message' => 'Review successfully added, admin will check it and then it will be shown', 'type' => 'success'));
