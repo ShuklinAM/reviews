@@ -4,6 +4,7 @@ class previewController
 {
     public function indexAction()
     {
-        var_dump($_FILES);
+        App::setPageParams(null, $this);
+        loadView('preview');
     }
 }

@@ -1,7 +1,7 @@
 <?php $params = App::getPageParams();?>
 <?php $review = $params['controller']->getReview();?>
 <div class="col-xs-6">
-    <form role="form" action="<?php echo App::getUrl('admin/index/update/?id='.$review['review_id']);?>" method="post">
+    <form role="form" data-toggle="validator" action="<?php echo App::getUrl('admin/index/update/?id='.$review['review_id']);?>" method="post">
         <h4 class="form-signin-heading">Edit review</h4>
         <div class="form-group col-xs-12">
             <label for="image">User image</label>
