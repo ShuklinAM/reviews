@@ -1,6 +1,6 @@
 <?php
 
-final class Db
+class Db
 {
     const DB_NAME = 'reviews';
 
@@ -75,6 +75,27 @@ final class Db
     public static function deleteRow($table, $conditions)
     {
         $query = 'DELETE FROM '.$table.' WHERE ';
+
+        $where = array();
+        foreach($conditions as $key => $value) {
+            $where[] = $key.' = "'.$value.'"';
+        }
+
+        $query .= implode(' AND ', $where);
+
+        mysqli_query(self::$_connection, $query);
+    }
+
+    public static function updateRow($table, $conditions, $newRow)
+    {
+        $query = 'UPDATE '.$table.' SET ';
+
+        $newData = array();
+        foreach($newRow as $key => $value) {
+            $newData[] = $key.' = "'.$value.'"';
+        }
+
+        $query .= implode(', ', $newData).' WHERE ';
 
         $where = array();
         foreach($conditions as $key => $value) {

@@ -1,6 +1,6 @@
 <?php
 
-final class Req
+class Req
 {
     public static function post($key = null, $default = null)
     {

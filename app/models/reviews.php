@@ -31,4 +31,25 @@ class reviewsModel
     {
         Db::deleteRow($this->_table, array('review_id' => $id));
     }
+
+    public function updateReview($review)
+    {
+        $prevReview = $this->getReview($review['review_id']);
+
+        if(!$prevReview) {
+            return false;
+        }
+
+        if($prevReview['name'] != $review['name'] ||
+            $prevReview['email'] != $review['email'] ||
+            $prevReview['review'] != $review['review']) {
+            $review['admin_updated'] = 1;
+        }
+
+        $review['date'] = date('Y-m-d H:i:s');
+        unset($review['review_id']);
+        Db::updateRow($this->_table, array('review_id' => $prevReview['review_id']), $review);
+
+        return true;
+    }
 }

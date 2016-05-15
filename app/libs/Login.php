@@ -1,6 +1,6 @@
 <?php
 
-final class Login
+class Login
 {
     const ADMIN_FIELD = 'admin';
 

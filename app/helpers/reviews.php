@@ -25,7 +25,7 @@ function showSortBy($title, $field) {
 function showImage($path) {
     if($path && file_exists(APP_ROOT.'/images/'.$path)) {
         $path = App::getUrl('images/'.$path);
-        return '<img src="'.$path.'" width="100"/>';
+        return '<img src="'.$path.'"/>';
     } else {
         return '-';
     }
@@ -69,4 +69,12 @@ function pagination($url, $total, $limit = reviewsModel::LIMIT) {
         <div class="pagination">
             <p>'.$prevLink.' Page '.$page.' of '.$pages.' pages, displaying '.$start.'-'.$end.' of '.$total.' results '.$nextLink.' </p>
         </div>';
+}
+
+function cutString($string) {
+    return strlen($string) > 30 ? substr($string, 0, 30).'...' : $string;
+}
+
+function clearString($string) {
+    return trim(strip_tags($string));
 }

@@ -22,7 +22,32 @@ class IndexController
 
     public function updateAction()
     {
+        $review = array(
+            'review_id'         => (int)Req::get('id'),
+            'review'            => clearString(Req::post('review')),
+            'name'              => clearString(Req::post('name')),
+            'email'             => clearString(Req::post('email')),
+            'admin_accepted'    => (int)Req::post('admin_accepted'),
+        );
 
+        if(!$review['review_id']) {
+            return App::redirect('admin');
+        }
+
+        if(!$review['review'] || !$review['name'] || !$review['email']) {
+            App::addMessage(array('message' => 'Not all review fields were filled', 'type' => 'error'));
+            return App::redirect('admin/index/edit?id='.$review['review_id']);
+        }
+
+        $model = new reviewsModel();
+        $result = $model->updateReview($review);
+
+        if(!$result) {
+            return App::redirect('admin');
+        }
+
+        App::addMessage(array('message' => 'Review successfully updated', 'type' => 'success'));
+        return App::redirect('admin/index/edit?id='.$review['review_id']);
     }
 
     public function deleteAction()
@@ -63,5 +88,20 @@ class IndexController
     {
         $model = new reviewsModel();
         return $model->getReviewsCount();
+    }
+
+    public function getReview()
+    {
+        $reviewId = Req::get('id');
+        if($reviewId) {
+            $model = new reviewsModel();
+            $review = $model->getReview($reviewId);
+
+            if($review) {
+                return $review;
+            }
+        }
+
+        return App::redirect('admin');
     }
 }

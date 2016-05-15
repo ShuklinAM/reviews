@@ -14,7 +14,7 @@
                 <th><?php echo showSortBy('Name', 'name');?></th>
                 <th><?php echo showSortBy('Email', 'email');?></th>
                 <th><?php echo showSortBy('Date', 'date');?></th>
-                <th><?php echo showSortBy('Admin updated', 'admin_updated');?></th>
+                <th><?php echo showSortBy('Change by admin', 'admin_updated');?></th>
                 <th><?php echo showSortBy('Published', 'admin_accepted');?></th>
                 <th>Options</th>
             </tr>
@@ -23,7 +23,7 @@
             <?php foreach($reviews as $review):?>
                 <tr>
                     <th scope="row"><?php echo $review['review_id'];?></th>
-                    <td><?php echo $review['review'];?></td>
+                    <td><?php echo cutString($review['review']);?></td>
                     <td><?php echo showImage($review['image']);?></td>
                     <td><?php echo $review['name'];?></td>
                     <td><a href="mailto:<?php echo $review['email'];?>"><?php echo $review['email'];?></a></td>

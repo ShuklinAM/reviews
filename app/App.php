@@ -2,7 +2,7 @@
 
 session_start();
 
-class App
+final class App
 {
     public function run()
     {
