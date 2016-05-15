@@ -1,4 +1,4 @@
-<div class="col-xs-4">
+<div class="col-xs-6">
     <form id="review-form" data-toggle="validator" role="form" action="<?php echo App::getUrl('index/add');?>" method="post" enctype="multipart/form-data">
         <h4 class="form-signin-heading">Add review</h4>
         <div class="form-group col-xs-12">
@@ -21,7 +21,7 @@
             <button type="submit" class="btn btn-default">Add</button>
         </div>
         <div class="form-group col-xs-3">
-            <a href="javascript:void(0)" onclick="preview();" class="btn btn-default">Preview</a>
+            <a href="javascript:void(0)" onclick="preview();" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></a>
         </div>
     </form>
 </div>

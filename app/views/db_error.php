@@ -1,3 +1,1 @@
-<?php
-
-echo 'mysql error';
+<p><strong>Mysql Connection error</strong></p>

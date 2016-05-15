@@ -15,28 +15,26 @@
             <label for="email">User email</label>
             <input type="email" required="" id="email" name="email" class="form-control" placeholder="Email" value="<?php echo $review['email'];?>"/>
         </div>
-        <div class="form-group col-xs-6">
+        <div class="form-group col-xs-12">
             <label for="review">Review</label>
             <textarea name="review" required="" id="review" placeholder="Review" class="form-control"><?php echo $review['review'];?></textarea>
         </div>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-xs-4">
             <label for="admin_accepted">Published</label>
             <input type="checkbox" id="admin_accepted" name="admin_accepted" value="1" class="form-control" <?php if($review['admin_accepted']):?>checked<?php endif;?>/>
         </div>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-xs-4">
             <label>Change by admin</label>
             <?php echo showBoolean($review['admin_updated']);?>
         </div>
-        <div class="form-group col-xs-3">
+        <div class="form-group col-xs-4">
             <label>Last date</label>
             <?php echo showDate($review['date']);?>
         </div>
-        <div class="form-group col-xs-3">
+        <div class="btn-group col-xs-12" role="group">
             <button type="submit" class="btn btn-default">Update</button>
-        </div>
-        <div class="form-group col-xs-6">
             <a href="<?php echo App::getUrl('admin/index/delete?id='.$review['review_id']);?>"
-               onclick="return confirm('Delete review?');" class="btn btn-default">Delete</a>
+               onclick="return confirm('Delete review?');" class="btn btn-danger">Delete</a>
         </div>
     </form>
 </div>

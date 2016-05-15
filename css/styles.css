@@ -1,0 +1,36 @@
+.reviews-list .table-striped img {
+    max-width: 100px;
+}
+
+.reviews-list .table-striped caption {
+    font-size: 16px;
+}
+.reviews-list .pagination {
+    color: #000000;
+}
+
+.reviews-list .pagination a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.reviews-list .pagination a, .reviews-list .pagination span {
+    font-size: 18px;
+    padding: 0 5px;
+}
+
+.content {
+    padding: 70px 15px;
+}
+
+.content input[type=checkbox] {
+    float: right;
+    margin-top: -7px;
+    width: 30px;
+}
+
+.form-signin {
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+}

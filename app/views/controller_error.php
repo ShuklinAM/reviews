@@ -1,3 +1,1 @@
-<?php
-
-echo 'controller not exist';
+<p><strong>Controller is not exist</strong></p>

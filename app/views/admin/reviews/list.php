@@ -1,6 +1,6 @@
 <?php $params = App::getPageParams();?>
 <?php $reviews = $params['controller']->getReviews();?>
-<div class="row grid">
+<div class="row grid reviews-list">
     <table class="table table-striped">
         <caption>
             Reviews
@@ -8,7 +8,7 @@
         <?php if($reviews):?>
             <thead>
             <tr>
-                <th><?php echo showSortBy('#', 'id', true);?></th>
+                <th><?php echo showSortBy('#', 'review_id', true);?></th>
                 <th><?php echo showSortBy('Review', 'review', true);?></th>
                 <th>Image</th>
                 <th><?php echo showSortBy('Name', 'name', true);?></th>
@@ -22,8 +22,16 @@
             <tbody>
             <?php foreach($reviews as $review):?>
                 <tr>
-                    <th scope="row"><?php echo $review['review_id'];?></th>
-                    <td><?php echo cutString($review['review']);?></td>
+                    <th scope="row">
+                        <a href="<?php echo App::getUrl('admin/index/edit?id='.$review['review_id']);?>">
+                            <?php echo $review['review_id'];?>
+                        </a>
+                    </th>
+                    <td>
+                        <a href="<?php echo App::getUrl('admin/index/edit?id='.$review['review_id']);?>">
+                            <?php echo cutString($review['review']);?>
+                        </a>
+                    </td>
                     <td><?php echo showImage($review['image']);?></td>
                     <td><?php echo $review['name'];?></td>
                     <td><a href="mailto:<?php echo $review['email'];?>"><?php echo $review['email'];?></a></td>

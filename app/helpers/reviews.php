@@ -28,7 +28,7 @@ function showImage($path, $maxWidth = false, $maxHeight = false, $temp = false) 
     if($path && (file_exists(APP_ROOT.'/images/'.$path) || $temp)) {
         $path = (!$temp) ? App::getUrl('images/'.$path) : $path;
 
-        $styles = '';
+        $style = '';
         if($maxWidth || $maxHeight) {
             $style = 'style="';
 
@@ -44,7 +44,7 @@ function showImage($path, $maxWidth = false, $maxHeight = false, $temp = false) 
 
         return '<img src="'.$path.'" '.$style.'/>';
     } else {
-        return '-';
+        return '<span class="glyphicon glyphicon-ban-circle"></span>';
     }
 }
 
@@ -53,7 +53,7 @@ function showDate($date) {
 }
 
 function showBoolean($boolean) {
-    return ($boolean) ? 'Yes' : 'No';
+    return ($boolean) ? '<span class="glyphicon glyphicon-plus-sign"></span>' : '<span class="glyphicon glyphicon-minus-sign"></span>';
 }
 
 function pagination($url, $total, $limit = reviewsModel::LIMIT) {

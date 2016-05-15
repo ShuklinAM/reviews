@@ -18,7 +18,10 @@ class previewController
 
         require_once(APP_ROOT.'/app/libs/Image.php');
         $image = (isset($_FILES['image']['tmp_name'])) ? $_FILES['image']['tmp_name'] : false;
-        if($image) {
+
+        if($image && ($_FILES['image']['type'] == 'image/jpeg' ||
+                $_FILES['image']['type'] == 'image/png' ||
+                $_FILES['image']['type'] == 'image/gif')) {
             $imageData = base64_encode(file_get_contents($image));
             $review['image'] = 'data:image/'.mime_content_type($image).';base64,'.$imageData;
         }
