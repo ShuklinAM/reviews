@@ -23,12 +23,12 @@ final class Db
         return self::$_connected;
     }
 
-    public static function getRowWhere($table, $fields)
+    public static function getRowWhere($table, $conditions)
     {
         $query = 'SELECT * FROM '.$table.' WHERE ';
 
         $where = array();
-        foreach($fields as $key => $value) {
+        foreach($conditions as $key => $value) {
             $where[] = $key.' = "'.$value.'"';
         }
 
@@ -36,5 +36,30 @@ final class Db
 
         $result = mysqli_query(self::$_connection, $query);
         return mysqli_fetch_assoc($result);
+    }
+
+    public static function getRowsWhere($table, $conditions, $limit, $sort)
+    {
+        $query = 'SELECT * FROM '.$table;
+
+        if($conditions) {
+            $where = array();
+            foreach($conditions as $key => $value) {
+                $where[] = $key.' = "'.$value.'"';
+            }
+
+            $query .= ' WHERE '.implode(' AND ', $where);
+        }
+
+        $query .= ' ORDER BY '.$sort.' LIMIT '.$limit['start'].', '.$limit['limit'];
+
+        $result = mysqli_query(self::$_connection, $query);
+
+        $reviews = array();
+        while ($row = mysql_fetch_assoc($result)) {
+            $reviews[] = $row;
+        }
+
+        return $reviews;
     }
 }

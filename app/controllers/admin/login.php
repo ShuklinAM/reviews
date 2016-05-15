@@ -6,7 +6,7 @@ class LoginController
 
     public function __construct()
     {
-        if(Login::isLogin()) {
+        if(Login::getLogin()) {
             return App::redirect('admin');
         }
     }
@@ -26,8 +26,8 @@ class LoginController
 
             require_once(APP_ROOT.'/app/models/login.php');
             $model = new loginModel();
-            if($model->getAdmin($login, $password)) {
-                Login::loginAdmin();
+            if($admin = $model->getAdmin($login, $password)) {
+                Login::loginAdmin($admin['login']);
                 return App::redirect('admin');
             }
         }

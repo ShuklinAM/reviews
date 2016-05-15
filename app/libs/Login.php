@@ -2,7 +2,7 @@
 
 final class Login
 {
-    const ADMIN_FIELD = 'is_admin';
+    const ADMIN_FIELD = 'admin';
 
     public static function checkLogin()
     {
@@ -11,14 +11,14 @@ final class Login
         }
     }
 
-    public static function isLogin()
+    public static function getLogin()
     {
-        return !isset($_SESSION[self::ADMIN_FIELD]) || !$_SESSION[self::ADMIN_FIELD] ? false : true;
+        return !isset($_SESSION[self::ADMIN_FIELD]) || !$_SESSION[self::ADMIN_FIELD] ? false : $_SESSION[self::ADMIN_FIELD];
     }
 
-    public static function loginAdmin()
+    public static function loginAdmin($admin)
     {
-        $_SESSION[self::ADMIN_FIELD] = true;
+        $_SESSION[self::ADMIN_FIELD] = $admin;
     }
 
     public static function logout()
