@@ -24,10 +24,25 @@ function showSortBy($title, $field, $admin = false) {
                 </a>';
 }
 
-function showImage($path) {
-    if($path && file_exists(APP_ROOT.'/images/'.$path)) {
-        $path = App::getUrl('images/'.$path);
-        return '<img src="'.$path.'"/>';
+function showImage($path, $maxWidth = false, $maxHeight = false, $temp = false) {
+    if($path && (file_exists(APP_ROOT.'/images/'.$path) || $temp)) {
+        $path = (!$temp) ? App::getUrl('images/'.$path) : $path;
+
+        $styles = '';
+        if($maxWidth || $maxHeight) {
+            $style = 'style="';
+
+            if($maxWidth) {
+                $style .= 'max-width: '.$maxWidth.'px;';
+            }
+            if($maxHeight) {
+                $style .= 'max-height: '.$maxHeight.'px;';
+            }
+
+            $style .= '"';
+        }
+
+        return '<img src="'.$path.'" '.$style.'/>';
     } else {
         return '-';
     }
