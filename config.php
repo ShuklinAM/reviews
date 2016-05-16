@@ -1,9 +1,9 @@
 <?php
 
-    $baseUrl = 'http://localhost/reviews/';
+    $baseUrl = 'http://screamzt-domain.com/';
 
     $database = array(
-        'server'    => 'localhost',
-        'user'      => 'root',
+        'server'    => 'u109044103_revs',
+        'user'      => 'u109044103_revs',
         'password'  => '111111'
     );
